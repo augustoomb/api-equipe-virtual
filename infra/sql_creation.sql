@@ -16,14 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
 --     PRIMARY KEY(id_tool)
 -- )
 
--- CREATE TABLE IF NOT EXISTS tasks (
---     id_task BIGINT NOT NULL AUTO_INCREMENT,
---     description_task TEXT NOT NULL,    
---     expected_output_task TEXT NOT NULL,
---     async_execution_task BOOLEAN,
---     output_file_task VARCHAR(30),
---     PRIMARY KEY(id_task)
--- )
+
 
 
 CREATE TABLE IF NOT EXISTS crews (
@@ -36,6 +29,17 @@ CREATE TABLE IF NOT EXISTS crews (
     PRIMARY KEY(id_crew),
     iduser_crew BIGINT NOT NULL,
     FOREIGN KEY (iduser_crew) REFERENCES users (id_user)
+)
+
+CREATE TABLE IF NOT EXISTS tasks (
+    id_task BIGINT NOT NULL AUTO_INCREMENT,
+    description_task TEXT NOT NULL,    
+    expected_output_task TEXT NOT NULL,
+    async_execution_task BOOLEAN,
+    output_file_task VARCHAR(30),
+    idcrew_task BIGINT NOT NULL,
+    PRIMARY KEY(id_task),
+    FOREIGN KEY (idcrew_task) REFERENCES crews (id_crew)
 )
 
 CREATE TABLE IF NOT EXISTS agents (
@@ -59,16 +63,7 @@ CREATE TABLE IF NOT EXISTS agents (
 -- INSERT INTO tools (name_tool)
 -- VALUE("search_tool")
 
--- INSERT INTO tasks (
---     description_task, expected_output_task,
---     async_execution_task, output_file_task
--- )
--- VALUE (
---     "Identify the next big trend in technology. Focus on identifying pros and cons and the overall narrative.",
---     "A comprehensive 3 paragraphs long report on the latest AI trends.",
---     FALSE,
---     "new-file.md"
--- )
+
 
 INSERT INTO users (
     name_user, email_user, password_user
@@ -86,6 +81,19 @@ VALUE (
     "Process.sequential",
     TRUE,
     TRUE,
+    1
+)
+
+INSERT INTO tasks (
+    description_task, expected_output_task,
+    async_execution_task, output_file_task, 
+    idcrew_task
+)
+VALUE (
+    "Identify the next big trend in technology. Focus on identifying pros and cons and the overall narrative.",
+    "A comprehensive 3 paragraphs long report on the latest AI trends.",
+    FALSE,
+    "new-file.md",
     1
 )
 

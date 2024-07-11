@@ -1,0 +1,8 @@
+Flask==3.0.3
+PyMySQL==1.1.1
+crewai==0.30.11
+crewai-tools==0.2.6
+SQLAlchemy==2.0.30
+alembic==1.13.1
+cryptography==42.0.8
+# python-dotenv==1.0.1

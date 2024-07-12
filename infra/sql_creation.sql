@@ -33,8 +33,10 @@ CREATE TABLE IF NOT EXISTS crews (
 
 CREATE TABLE IF NOT EXISTS tasks (
     id_task BIGINT NOT NULL AUTO_INCREMENT,
-    description_task TEXT NOT NULL,    
-    expected_output_task TEXT NOT NULL,
+    name_task VARCHAR(30) NOT NULL,    
+    description_task TEXT NOT NULL,
+    status_task BOOLEAN,
+    expected_output_task TEXT NOT NULL,    
     async_execution_task BOOLEAN,
     output_file_task VARCHAR(30),
     idcrew_task BIGINT NOT NULL,
@@ -85,17 +87,30 @@ VALUE (
 )
 
 INSERT INTO tasks (
-    description_task, expected_output_task,
+    name_task, description_task, status_task, expected_output_task,
     async_execution_task, output_file_task, 
     idcrew_task
 )
-VALUE (
-    "Identify the next big trend in technology. Focus on identifying pros and cons and the overall narrative.",
-    "A comprehensive 3 paragraphs long report on the latest AI trends.",
+VALUE 
+(   "Nome 1", "Identify the next big trend in technology. Focus on identifying pros and cons and the overall narrative.",
+    1, "A comprehensive 3 paragraphs long report on the latest AI trends.",
     FALSE,
     "new-file.md",
     1
-)
+),
+(   "Nome 2", "Identify2 the next big trend in technology. Focus on identifying pros and cons and the overall narrative.",
+    1, "A comprehensive 3 paragraphs long report on the latest AI trends.",
+    TRUE,
+    "new-file2.md",
+    1
+),
+(   "Nome 3", "Identify3 the next big trend in technology. Focus on identifying pros and cons and the overall narrative.",
+    1, "A comprehensive 3 paragraphs long report on the latest AI trends.",
+    TRUE,
+    "new-file3.md",
+    1
+),
+
 
 INSERT INTO agents (
     name_agent,

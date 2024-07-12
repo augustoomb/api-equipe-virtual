@@ -12,13 +12,15 @@ def get_agents():
         tasks_list = [
             {
                 "id_task": id_task,
+                "name_task": name_task,
                 "description_task": description_task,
+                "status_task": status_task,
                 "expected_output_task": expected_output_task,
                 "async_execution_task": async_execution_task,
                 "output_file_task": output_file_task,
                 "idcrew_task": idcrew_task,
             }
-            for id_task, description_task, expected_output_task, async_execution_task, output_file_task, idcrew_task in response
+            for id_task, name_task, description_task, status_task, expected_output_task, async_execution_task, output_file_task, idcrew_task in response
         ]
         return jsonify(tasks_list)
     except Exception as e:
@@ -26,31 +28,28 @@ def get_agents():
         return {"message": message}, 400
 
 
-# @tasks_bp.route("/<int:crew_id>", methods=["GET"])
-# def get_agents_by_crew_id(crew_id):
-#     try:
-#         agentsRepo = AgentsRepository()
-#         response = agentsRepo.selectByCrewId(crew_id)
-#         agents_list = [
-#             {
-#                 "id_agent": id_agent,
-#                 "name_agent": name_agent,
-#                 "role_agent": role_agent,
-#                 "goal_agent": goal_agent,
-#                 "backstory_agent": backstory_agent,
-#                 "llm_agent": llm_agent,
-#                 "llm_key_agent": llm_key_agent,
-#                 "allow_delegation_agent": allow_delegation_agent,
-#                 "verbose_agent": verbose_agent,
-#                 "memory_agent": memory_agent,
-#                 "idcrew_agent": idcrew_agent,
-#             }
-#             for id_agent, name_agent, role_agent, goal_agent, backstory_agent, llm_agent, llm_key_agent, allow_delegation_agent, verbose_agent, memory_agent, idcrew_agent in response
-#         ]
-#         return jsonify(agents_list)
-#     except Exception as e:
-#         message = f"Ocorreu um erro: {e}"
-#         return {"message": message}, 400
+@tasks_bp.route("/<int:crew_id>", methods=["GET"])
+def get_tasks_by_crew_id(crew_id):
+    try:
+        tasksRepo = TasksRepository()
+        response = tasksRepo.selectByCrewId(crew_id)
+        tasks_list = [
+            {
+                "id_task": id_task,
+                "name_task": name_task,
+                "description_task": description_task,
+                "status_task": status_task,
+                "expected_output_task": expected_output_task,
+                "async_execution_task": async_execution_task,
+                "output_file_task": output_file_task,
+                "idcrew_task": idcrew_task,
+            }
+            for id_task, name_task, description_task, status_task, expected_output_task, async_execution_task, output_file_task, idcrew_task in response
+        ]
+        return jsonify(tasks_list)
+    except Exception as e:
+        message = f"Ocorreu um erro: {e}"
+        return {"message": message}, 400
 
 
 # @agents_bp.route("/", methods=["GET"])

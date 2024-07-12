@@ -6,7 +6,9 @@ class Tasks(Base):
     __tablename__ = "tasks"
 
     id_task = Column(BigInteger, primary_key=True)
+    name_task = Column(String)
     description_task = Column(Text, nullable=False)
+    status_task = Column(Boolean)
     expected_output_task = Column(Text, nullable=False)
     async_execution_task = Column(Boolean)
     output_file_task = Column(String)

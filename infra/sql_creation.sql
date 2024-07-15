@@ -10,14 +10,11 @@ CREATE TABLE IF NOT EXISTS users (
     PRIMARY KEY(id_user)
 )
 
--- CREATE TABLE IF NOT EXISTS tools (
---     id_tool BIGINT NOT NULL AUTO_INCREMENT,
---     name_tool VARCHAR(30) NOT NULL,
---     PRIMARY KEY(id_tool)
--- )
-
-
-
+CREATE TABLE IF NOT EXISTS tools (
+    id_tool BIGINT NOT NULL AUTO_INCREMENT,
+    name_tool VARCHAR(30) NOT NULL,
+    PRIMARY KEY(id_tool)
+)
 
 CREATE TABLE IF NOT EXISTS crews (
     id_crew BIGINT NOT NULL AUTO_INCREMENT,
@@ -62,8 +59,8 @@ CREATE TABLE IF NOT EXISTS agents (
 
 -- -----
 
--- INSERT INTO tools (name_tool)
--- VALUE("search_tool")
+INSERT INTO tools (name_tool)
+VALUE("search_tool")
 
 
 

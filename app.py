@@ -3,12 +3,14 @@ from infra.routes.users import user_bp
 from infra.routes.crews import crew_bp
 from infra.routes.agents import agents_bp
 from infra.routes.tasks import tasks_bp
+from infra.routes.tools import tools_bp
 
 app = Flask(__name__)
 app.register_blueprint(user_bp, url_prefix="/users")
 app.register_blueprint(crew_bp, url_prefix="/crews")
 app.register_blueprint(agents_bp, url_prefix="/agents")
 app.register_blueprint(tasks_bp, url_prefix="/tasks")
+app.register_blueprint(tools_bp, url_prefix="/tools")
 
 
 @app.route("/")
